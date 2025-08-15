@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EventAI — Supabase Client</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>EventAI — Supabase Client</h1>
+    <nav>
+      <button id="nav-home" class="link">Home</button>
+      <button id="nav-dashboard" class="link">Dashboard</button>
+      <button id="btn-signout" class="secondary">Sign out</button>
+    </nav>
+  </header>
+
+  <main id="view">
+    <section id="home" class="card">
+      <h2>Welcome</h2>
+      <p>This is a lightweight, static web app that talks directly to your Supabase database using only the <b>Anon key</b>. <br>Do <b>not</b> put the Service Role key, OpenAI key, or Google private key here.</p>
+
+      <div class="grid-2">
+        <div>
+          <h3>Configure</h3>
+          <p>Open <code>config.example.js</code>, copy to <code>config.js</code>, and fill <code>SUPABASE_URL</code> and <code>SUPABASE_ANON_KEY</code>. Optionally set <code>BACKEND_URL</code> for Make triggers.</p>
+        </div>
+        <div>
+          <h3>Sign in</h3>
+          <label>Email (magic link): <input id="auth-email" placeholder="you@example.com" /></label>
+          <button id="btn-magic">Send magic link</button>
+          <div id="auth-msg" class="muted"></div>
+        </div>
+      </div>
+
+      <div id="session-box" class="card subtle hidden">
+        <h3>Session</h3>
+        <div id="session-info" class="mono small"></div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <div class="card">
+        <h2>Your Events</h2>
+        <div class="row">
+          <input id="event-title" placeholder="Event title" />
+          <select id="event-lang">
+            <option value="en">en</option>
+            <option value="hu">hu</option>
+          </select>
+          <button id="btn-create">Create Event</button>
+          <button id="btn-refresh">Refresh</button>
+        </div>
+        <ul id="events"></ul>
+      </div>
+
+      <div id="event-detail" class="card hidden">
+        <h2>Event Detail</h2>
+        <div id="event-meta"></div>
+        <div class="row">
+          <button id="btn-folder">Create / Ensure Folder</button>
+          <button id="btn-concepts">Generate 3 Concepts</button>
+          <button id="btn-packs">Generate Packs</button>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <h3>Inputs</h3>
+            <textarea id="inputs-json" rows="14" spellcheck="false"></textarea>
+            <div class="row">
+              <button id="btn-save-inputs">Save Inputs</button>
+              <span id="inputs-msg" class="muted"></span>
+            </div>
+          </div>
+          <div>
+            <h3>Artifacts</h3>
+            <ul id="artifacts"></ul>
+
+            <h3>Concepts</h3>
+            <ul id="concepts"></ul>
+            <div class="row">
+              <button class="tiny" data-select="A">Select A</button>
+              <button class="tiny" data-select="B">Select B</button>
+              <button class="tiny" data-select="C">Select C</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot muted small">
+    Built for EventAI MVP — static HTML/CSS/JS, no build tools required.
+  </footer>
+
+  <!-- Config (you must copy config.example.js to config.js and fill values) -->
+  <script type="module" src="config.js"></script>
+  <!-- App -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
